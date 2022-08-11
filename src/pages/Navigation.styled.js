@@ -29,6 +29,10 @@ rgba(0,0,0,.8) 0 3px 8px -3px;
 
 `
 
+export const Button = styled.button`
+margin-right: 25px;
+`
+
 
 
 

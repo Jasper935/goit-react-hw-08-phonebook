@@ -32,22 +32,25 @@ const onSubmit = (evt) => {
     evt.preventDefault()
 dispatch(logIn({email, password}))
  navigate("/contacts", { replace: true });
-
+setEmail('')
+setPassword('')
 
 
 };
 
-  return (
+  return (<>
+    <h4>Please, enter your email and password </h4>
     <form action="submit" onSubmit={onSubmit}>
       <label>
         Email
-        <input name="email" type="email" onInput={onInput} />
+        <input value={email} name="email" type="email" onInput={onInput} />
       </label>
       <label>
         Password
-        <input name="password" type="text" onInput={onInput} />
+        <input value={password} name="password" type="text" onInput={onInput} />
       </label>
       <button type="Submit">Login</button>
     </form>
+    </>
   );
 };

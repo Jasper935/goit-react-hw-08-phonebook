@@ -9,7 +9,7 @@ export const Form = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setnumber] = useState('');
-console.log(contacts);
+
   const onChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':

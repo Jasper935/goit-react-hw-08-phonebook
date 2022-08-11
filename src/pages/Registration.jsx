@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signIn } from 'redux/auth/auth-operations';
+import { useNavigate } from 'react-router-dom';
 export const Registration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
   const dispatch = useDispatch();
-
+const navigate =useNavigate()
   const onInput = evt => {
     const { name, value } = evt.target;
     switch (name) {
@@ -26,12 +27,15 @@ export const Registration = () => {
   };
 
   const onSubmit = evt => {
-    console.log(name, email, password);
+   
     evt.preventDefault();
     dispatch(signIn({name, email, password}))
+    navigate('/contacts')
   };
 
   return (
+    <>
+    <h4>Please, enter your name, email and password for registration</h4>
     <form onSubmit={onSubmit}>
         <label>
         Name
@@ -48,5 +52,6 @@ export const Registration = () => {
       
       <button type="submit">Registration</button>
     </form>
+    </>
   );
 };

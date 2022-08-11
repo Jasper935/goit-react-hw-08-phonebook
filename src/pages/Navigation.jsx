@@ -1,11 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { getLogin } from 'redux/auth/auth-selectors';
+import { getLogin} from 'redux/auth/auth-selectors';
 import { logOut } from 'redux/auth/auth-operations';
-import { NavContainer } from './Navigation.styled';
-import { NavigationLink } from './Navigation.styled';
+
+import { NavigationLink, Button, NavContainer } from './Navigation.styled';
 
 import {useNavigate } from 'react-router-dom';
+
 
 export const Navigation = () => {
 
@@ -26,7 +27,7 @@ export const Navigation = () => {
       <NavigationLink to="/login">Login</NavigationLink></>)} 
 
       
-      {isLogged &&<><NavigationLink to="/contacts">Contacts</NavigationLink><button onClick={onClick}>Log out</button></> }
+      {isLogged &&<><NavigationLink to="/contacts">Contacts</NavigationLink><Button onClick={onClick}>Log out</Button><h4>Welcome!</h4></> }
     </NavContainer>
   );
 };
