@@ -1,22 +1,29 @@
-import { Filter } from './Filter/Filter';
-import { Form } from '../components/Form/Form';
-import { Section } from './Section/Section';
 
-import { ContactsList } from './ContactsList/ContactsList';
-import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { Navigation } from 'pages/Navigation';
+import { Contacts } from '../pages/contacts/contacts';
+import { Registration } from 'pages/Registration';
+import { LogIn } from 'pages/LogIn';
+
+
+
 export const App = () => {
-  const loader = useSelector(state => state.contacts.loading);
-  console.log(loader);
+ 
+  
+  // useEffect(()=>{
+  //  dispatch(getRefresh())
+  // },[dispatch])
+
+  
+
   return (
     <>
-      <Section title={'PhoneBook'}>
-        <Form />
-      </Section>
-      <Section title={'Contacts'}>
-        <Filter />
-        <ContactsList/>
-        {loader&&<h2>Loading...</h2>}
-      </Section>
+      <Navigation />
+       <Routes>
+          <Route index path='/registration'element={<Registration/>} />
+          <Route path="/login" element={<LogIn/>} />
+          <Route path="/contacts" element={<Contacts/>} />  
+        </Routes>
     </>
   );
 };

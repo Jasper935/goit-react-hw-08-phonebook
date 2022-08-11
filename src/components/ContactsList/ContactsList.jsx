@@ -3,7 +3,7 @@ import { fetchContacts, deleteContact } from 'redux/contacts/contacts-operations
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-
+import { getRefresh } from 'redux/auth/auth-operations';
 export const ContactsList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
@@ -14,6 +14,7 @@ export const ContactsList = () => {
   };
 
   useEffect(() => {
+    dispatch(getRefresh())
     dispatch(fetchContacts());
   }, [dispatch]);
 
