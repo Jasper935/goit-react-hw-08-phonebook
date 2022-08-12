@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/auth-operations';
-import { useNavigate } from 'react-router-dom';
+
 import { getLogin, getUsername } from 'redux/auth/auth-selectors';
 import { Link } from 'react-router-dom';
 export const LogIn = () => {
@@ -12,7 +12,7 @@ const dispatch = useDispatch()
 const isLogged =useSelector(getLogin)
 const name = useSelector(getUsername)
 
-const navigate = useNavigate();
+
 const onInput = evt => {
     const { name, value } = evt.target;
     switch (name) {
@@ -28,15 +28,12 @@ const onInput = evt => {
 };
 
 
-
-
 const onSubmit = (evt) => {
     evt.preventDefault()
 dispatch(logIn({email, password}))
- navigate("/contacts", { replace: true });
+
 setEmail('')
 setPassword('')
-
 
 };
 

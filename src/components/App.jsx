@@ -4,11 +4,15 @@ import { Contacts } from '../pages/contacts';
 import { Registration } from 'pages/Registration';
 import { LogIn } from 'pages/LogIn';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getRefresh } from 'redux/auth/auth-operations';
 
 export const App = () => {
-  // useEffect(()=>{
-  //  dispatch(getRefresh())
-  // },[dispatch])
+  const dispatch =useDispatch()
+  useEffect(()=>{
+   dispatch(getRefresh())
+  },[dispatch])
 
   return (
     <>

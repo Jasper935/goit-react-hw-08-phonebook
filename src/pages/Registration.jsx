@@ -34,13 +34,13 @@ export const Registration = () => {
     evt.preventDefault();
     dispatch(signIn({ name, email, password }));
     navigate('/contacts');
-    console.log(Logged);
+    
   };
 
   return (
     <>
-      Logged?
-      <h4>Please, enter your name, email and password for registration</h4>
+      {!Logged?
+      (<><h4>Please, enter your name, email and password for registration</h4>
       <form onSubmit={onSubmit}>
         <label>
           Name
@@ -61,12 +61,13 @@ export const Registration = () => {
         </label>
 
         <button type="submit">Registration</button>
-      </form>
+      </form></>)
       :
-      <>
+      (<>
         <p>Welcome, {name}, go to</p>
         <Link to="/contacts">contacts</Link>
-      </>
+      </>)
+    }
     </>
   );
 };

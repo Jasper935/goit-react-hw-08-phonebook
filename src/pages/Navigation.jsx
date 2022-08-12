@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { getLogin} from 'redux/auth/auth-selectors';
+import { getLogin, getUsername} from 'redux/auth/auth-selectors';
 import { logOut } from 'redux/auth/auth-operations';
 
 import { NavigationLink, Button, NavContainer } from './Navigation.styled';
@@ -13,7 +13,7 @@ export const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLogged = useSelector(getLogin);
-  // const name = useSelector(getUsername)
+  const name = useSelector(getUsername)
 
   const onClick = () => {
     dispatch(logOut());
@@ -27,7 +27,7 @@ export const Navigation = () => {
       <NavigationLink to="/login">Login</NavigationLink></>)} 
 
       
-      {isLogged &&<><NavigationLink to="/contacts">Contacts</NavigationLink><Button onClick={onClick}>Log out</Button><h4>Welcome!</h4></> }
+      {isLogged &&<><NavigationLink to="/contacts">Contacts</NavigationLink><Button onClick={onClick}>Log out</Button><h4>Welcome, {name}!</h4></> }
     </NavContainer>
   );
 };

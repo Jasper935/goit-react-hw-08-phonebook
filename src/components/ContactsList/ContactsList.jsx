@@ -3,13 +3,13 @@ import { fetchContacts, deleteContact } from 'redux/contacts/contacts-operations
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getRefresh } from 'redux/auth/auth-operations';
-// import { getLogin } from 'redux/auth/auth-selectors';
+
+
 export const ContactsList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.contacts.filter);
-  // const logged = useSelector(getLogin)
+ 
 
 
   const onDelete = id => {
@@ -17,7 +17,7 @@ export const ContactsList = () => {
   };
 
   useEffect(() => {
-    dispatch(getRefresh())
+    
     dispatch(fetchContacts());
     
     
