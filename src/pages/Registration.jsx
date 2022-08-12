@@ -11,8 +11,8 @@ export const Registration = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLogged = useSelector(getUsername);
-  
+  const Logged = useSelector(getUsername);
+
   const onInput = evt => {
     const { name, value } = evt.target;
     switch (name) {
@@ -34,11 +34,12 @@ export const Registration = () => {
     evt.preventDefault();
     dispatch(signIn({ name, email, password }));
     navigate('/contacts');
+    console.log(Logged);
   };
 
   return (
     <>
-      isLogged?
+      Logged?
       <h4>Please, enter your name, email and password for registration</h4>
       <form onSubmit={onSubmit}>
         <label>
