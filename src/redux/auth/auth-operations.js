@@ -54,7 +54,7 @@ export const getRefresh = createAsyncThunk(
         try {
             tokenAuth.set(tokenLS)
             const { data } = await axios.get('users/current')
-              return data
+            return data
 
         } catch (error) {
             console.log(error);

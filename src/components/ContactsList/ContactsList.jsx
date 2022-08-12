@@ -1,26 +1,23 @@
 import { ContactsItem } from 'components/ContactsItem/ContactsItem';
-import { fetchContacts, deleteContact } from 'redux/contacts/contacts-operations';
+import {
+  fetchContacts,
+  deleteContact,
+} from 'redux/contacts/contacts-operations';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.contacts.filter);
- 
-
 
   const onDelete = id => {
     dispatch(deleteContact(id));
   };
 
   useEffect(() => {
-    
     dispatch(fetchContacts());
-    
-    
   }, [dispatch]);
 
   const filterContacts = () => {

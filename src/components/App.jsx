@@ -9,10 +9,10 @@ import { useDispatch } from 'react-redux';
 import { getRefresh } from 'redux/auth/auth-operations';
 
 export const App = () => {
-  const dispatch =useDispatch()
-  useEffect(()=>{
-   dispatch(getRefresh())
-  },[dispatch])
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRefresh());
+  }, [dispatch]);
 
   return (
     <>
