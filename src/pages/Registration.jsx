@@ -1,18 +1,22 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from 'redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { getUsername } from 'redux/auth/auth-selectors';
 export const Registration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const dispatch = useDispatch();
-const navigate =useNavigate()
+  const navigate = useNavigate();
+  const isLogged = useSelector(getUsername);
+  
   const onInput = evt => {
     const { name, value } = evt.target;
     switch (name) {
-        case 'name':
+      case 'name':
         setName(value);
         break;
       case 'email':
@@ -27,31 +31,41 @@ const navigate =useNavigate()
   };
 
   const onSubmit = evt => {
-   
     evt.preventDefault();
-    dispatch(signIn({name, email, password}))
-    navigate('/contacts')
+    dispatch(signIn({ name, email, password }));
+    navigate('/contacts');
   };
 
   return (
     <>
-    <h4>Please, enter your name, email and password for registration</h4>
-    <form onSubmit={onSubmit}>
+      isLogged?
+      <h4>Please, enter your name, email and password for registration</h4>
+      <form onSubmit={onSubmit}>
         <label>
-        Name
-        <input name="name" type="text" value={name} onChange={onInput} />
-      </label>
-      <label>
-        Email
-        <input name="email" type="email" value={email}  onChange={onInput} />
-      </label>
-      <label>
-        Password
-        <input name="password" type="text" value={password}  onChange={onInput} />
-      </label>
-      
-      <button type="submit">Registration</button>
-    </form>
+          Name
+          <input name="name" type="text" value={name} onChange={onInput} />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" value={email} onChange={onInput} />
+        </label>
+        <label>
+          Password
+          <input
+            name="password"
+            type="text"
+            value={password}
+            onChange={onInput}
+          />
+        </label>
+
+        <button type="submit">Registration</button>
+      </form>
+      :
+      <>
+        <p>Welcome, {name}, go to</p>
+        <Link to="/contacts">contacts</Link>
+      </>
     </>
   );
 };
