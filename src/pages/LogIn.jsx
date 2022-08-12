@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
+import { getLogin, getUsername } from 'redux/auth/auth-selectors';
+import { Link } from 'react-router-dom';
 export const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
 const dispatch = useDispatch()
-
-
+const isLogged =useSelector(getLogin)
+const name = useSelector(getUsername)
 
 const navigate = useNavigate();
 const onInput = evt => {
@@ -38,7 +40,7 @@ setPassword('')
 
 };
 
-  return (<>
+  return (!isLogged?(<>
     <h4>Please, enter your email and password </h4>
     <form action="submit" onSubmit={onSubmit}>
       <label>
@@ -51,6 +53,6 @@ setPassword('')
       </label>
       <button type="Submit">Login</button>
     </form>
-    </>
+    </>):<><p>Welcome, {name}, go to</p><Link to='/contacts'>contacts</Link></>
   );
 };
