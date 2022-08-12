@@ -27,7 +27,7 @@ export const Navigation = () => {
       <NavigationLink to="/login">Login</NavigationLink></>)} 
 
       
-      {isLogged &&<><NavigationLink to="/contacts">Contacts</NavigationLink><Button onClick={onClick}>Log out</Button><h4>Welcome, {name}!</h4></> }
+      {isLogged &&<><NavigationLink to="/contacts">Contacts</NavigationLink><Button onClick={onClick}>Log out</Button><h4>Welcome!</h4></> }
     </NavContainer>
   );
 };
