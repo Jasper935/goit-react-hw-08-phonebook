@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from 'redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { getUsername } from 'redux/auth/auth-selectors';
+import { getLogin, getUsername } from 'redux/auth/auth-selectors';
 export const Registration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -11,7 +11,8 @@ export const Registration = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const Logged = useSelector(getUsername);
+  const Logged = useSelector(getLogin);
+  const user =useSelector(getUsername)
 
   const onInput = evt => {
     const { name, value } = evt.target;
@@ -70,7 +71,7 @@ export const Registration = () => {
         </>
       ) : (
         <>
-          <p>Welcome, {name}, go to</p>
+          <p>Welcome, {user}, go to</p>
           <Link to="/contacts">contacts</Link>
         </>
       )}

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logIn } from 'redux/auth/auth-operations';
+import {  logIn } from 'redux/auth/auth-operations';
 
 import { getLogin, getUsername } from 'redux/auth/auth-selectors';
 import { Link } from 'react-router-dom';
+
 export const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,6 +13,9 @@ export const LogIn = () => {
   const isLogged = useSelector(getLogin);
   const name = useSelector(getUsername);
 
+    // getRefresh()
+    // dispatch()
+  
   const onInput = evt => {
     const { name, value } = evt.target;
     switch (name) {
@@ -28,6 +32,7 @@ export const LogIn = () => {
 
   const onSubmit = evt => {
     evt.preventDefault();
+
     dispatch(logIn({ email, password }));
 
     setEmail('');

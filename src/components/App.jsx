@@ -5,14 +5,20 @@ import { Registration } from 'pages/Registration';
 import { LogIn } from 'pages/LogIn';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getRefresh } from 'redux/auth/auth-operations';
+import { NotFound } from 'pages/NotFound';
+import { getToken } from 'redux/auth/auth-selectors';
 
 export const App = () => {
+
+
+  const token = useSelector(getToken)
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getRefresh());
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return (
     <>
@@ -28,7 +34,9 @@ export const App = () => {
             </PrivateRoute>
           }
         />
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
+
     </>
   );
 };

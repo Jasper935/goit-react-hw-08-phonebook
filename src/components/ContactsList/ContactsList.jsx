@@ -6,6 +6,7 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { getRefresh } from 'redux/auth/auth-operations';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
@@ -17,12 +18,13 @@ export const ContactsList = () => {
   };
 
   useEffect(() => {
+    dispatch(getRefresh());
     dispatch(fetchContacts());
   }, [dispatch]);
 
   const filterContacts = () => {
     return contacts.filter(el =>
-      el.name.toLowerCase().includes(filter.toLowerCase())
+      el.name.toLowerCase().includes(filter.toLowerCase()) 
     );
   };
 
